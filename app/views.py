@@ -10,7 +10,7 @@ from config.settings import SQLALCHEMY_DATABASE_URI
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
 from src.recommender import Recommender
-from bototest import Boto
+from src.bototest import Boto
 import os
 
 app = Flask(__name__)
