@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from config.settings import SQLALCHEMY_DATABASE_URI
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
-from recommender import Recommender
+from src.recommender import Recommender
 from bototest import Boto
 import os
 
