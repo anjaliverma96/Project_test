@@ -6,7 +6,7 @@ import pymysql
 from flask import Flask, url_for, request, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
-from settings import SQLALCHEMY_DATABASE_URI
+from config.settings import SQLALCHEMY_DATABASE_URI
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
 from recommender import Recommender
