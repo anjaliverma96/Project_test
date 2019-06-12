@@ -1,4 +1,4 @@
-import os
+
 SECRET_KEY = 'reallyhardtoguesskey'
 dbidentifier = 'anjalivermadb'
 DATABASE_USERNAME = 'root'
