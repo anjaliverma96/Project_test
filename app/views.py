@@ -96,11 +96,11 @@ def hello_world():
         fr = open(os.path.join("../data", "ratings.csv"), 'r') 
         fj = open(os.path.join("../data", "jokes.csv"), 'r')
     except FileNotFoundError: 
-        return "nf"
+        
         boto = Boto()
         boto.download_rating()
         boto.download_jokes()
-
+        print('here')
 
     #Your system now has the files - rating.csv and jokes.csv in them
 
