@@ -1,0 +1,17 @@
+logging:
+  LOGGER_NAME: 'root'
+
+load_data:
+  save_location: 'data/raw'
+  #SOURCE_BUCKET: ""
+
+db_config:
+  SQLALCHEMY_DATABASE_URI: 'sqlite:///data/msia423.db'
+  SQLALCHEMY_TRACK_MODIFICATIONS: True
+  SQLALCHEMY_ECHO: False  # If true, SQL for queries made will be printed
+
+app_config:
+  PORT: 3000
+  APP_NAME: "jokerecommender"
+  HOST: "127.0.0.1"
+
