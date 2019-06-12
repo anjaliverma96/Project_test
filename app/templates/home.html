@@ -1,0 +1,75 @@
+<!Doctype html>
+<head>
+    <title>Home - Joke Recommender</title>
+    
+</head>
+<body>
+    
+    <h1>JOKE RECOMMENDER</h1>
+    <p style = "margin-left: 20px;font-family:serif;font-size:30px;font-style:italic;color:plum">
+         ~ Creating Opportunities to laugh, one joke at a time
+      </p>
+    <h2>
+        
+        
+    The joke recommender learns your preference starting with the first joke you rate.<br>
+    The first joke is randomly selected and the subsequent jokes are a result of your ratings. <br> <br>
+        Happy Laughing!
+        
+        <br>
+        <br>
+        
+        Click on the button below to continue!
+        
+    </h2>
+    
+    
+    <style>
+        
+        body{
+            margin-left: 200px;
+            text-align:center;
+            background-image:url('static/img1.jpg');
+            background-image: -webkit-linear-gradient(rgba(200, 200, 200, 0.5), rgba(200, 200, 200, 0.5)), url(static/'img1.jpg');
+            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('static/img1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        
+        
+        h1{
+            color: purple;
+            font-family: garamond;
+            font-weight: 50;
+            font-size:44px;
+            
+        }
+        
+        h2{
+            color: purple;
+            font-family: serif;
+            font-weight: 50;
+            font-size:24px;
+            
+        }
+        .button {
+        background-color: rgba(217, 130, 217, 0.76);
+        border: none;
+        color: white;
+        padding: 15px 25px;
+        text-align: center;
+        font-size: 24px;
+        font-family: serif;
+        cursor: pointer;
+        }
+
+        .button:hover {
+        background-color: purple;
+        }
+    </style>
+        <form method = "GET" action="{{ url_for('recommend_joke') }}"><button type = "Submit" class="button" >Go ahead !</button></form>
+    
+</body>
