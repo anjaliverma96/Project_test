@@ -35,19 +35,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Data processes")
     subparsers = parser.add_subparsers()
 
-    # sub_process = subparsers.add_parser('loadS3')
-    # sub_process.add_argument("--bucket", type=str, default=BUCKET_NAME, help="Bucket to be copied to")
-    # sub_process.set_defaults(func=load_data)
-
-    # sub_process = subparsers.add_parser('createSqlite')
-    # sub_process.add_argument("--engine_string", type=str, default=SQLALCHEMY_DATABASE_URI,
-    #                          help="Connection uri for SQLALCHEMY")
-    # sub_process.set_defaults(func=create_sqlite_db)
-
-    # sub_process = subparsers.add_parser('createRDS')
-    # sub_process.add_argument("--database", type=str, default=DATABASE_NAME,
-    #                          help="Database in RDS")
-    # sub_process.set_defaults(func=create_rds_db)
 
     # Sub-parser for starting the app
     sb_run_app = subparsers.add_parser("run_app", description="Starts the app")
