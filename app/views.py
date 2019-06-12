@@ -85,16 +85,7 @@ def hello_world():
     #else get data from s3 boto to put into rds
     # data = User.query.all()
     # db.session.query()
-    # if data:
-    #     print('data is present')
-    # else:
-    #     print('data not present')
-        
-    #     # #add to db and print
-    #     a = User(username = 'asdfa',email ='asdfsa@sdfs.com')
-    #     db.session.add(a)
-    #     db.session.flush()
-    #     db.session.commit()
+    
 
 
     #For direct calculation from s3
@@ -102,10 +93,10 @@ def hello_world():
     #check if file is already present -
     #if not download
     try: 
-        fr = open('ratings.csv', 'r') 
-        fj = open('jokes.csv','r')
+        fr = open(os.path.join("../data", "ratings.csv"), 'r') 
+        fj = open(os.path.join("../data", "jokes.csv"), 'r')
     except FileNotFoundError: 
-    
+        return "nf"
         boto = Boto()
         boto.download_rating()
         boto.download_jokes()
