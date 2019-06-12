@@ -255,6 +255,6 @@ def add_data():
 
 
 #if __name__ == "__main__":
-def run_app:
+def run_app(args):
     app.run(host="0.0.0.0", port=80)
     debug = True
