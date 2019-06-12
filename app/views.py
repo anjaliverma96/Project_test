@@ -100,7 +100,6 @@ def hello_world():
         boto = Boto()
         boto.download_rating()
         boto.download_jokes()
-        print('here')
 
     #Your system now has the files - rating.csv and jokes.csv in them
 
@@ -125,6 +124,10 @@ def recommend_joke():
     data_jokes = pd.read_csv('jokes.csv', index_col = 0)
     data_final = data_raw[:100000]
 
+    '''
+     above reading should be from datimported fromdta
+     below should be m
+    '''
     #create an object of recommender
     reco = Recommender(data_final, data_jokes)
     
@@ -228,7 +231,7 @@ def recommend_joke():
             joke_num= recommended_res[1]
 
             new_joke = joke
-            new_joke_number = joke_num#needs to be the one that is being recommend_joke
+            new_joke_number = joke_num #needs to be the one that is being recommend_joke
             
             #set the sessions
             session['joke_num'] = new_joke_number
@@ -251,6 +254,7 @@ def add_data():
 
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
+def run_app:
     app.run(host="0.0.0.0", port=80)
     debug = True
