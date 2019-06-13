@@ -111,11 +111,8 @@ def recommend_joke():
         session.pop('prev_joke',None)
 
         #RDS ADD JOKE FOR FUTURE ANALYSIS
-        joke_add = Ratings_Log(joke = prev_joke,rating = value)
-
-        db.session.add(joke_add)
-        db.session.commit()
-    
+        add_data(prev_joke, value)
+        
     
         #now that we have the joke number we will create the svd with this information
         
@@ -197,13 +194,13 @@ def recommend_joke():
 #################### FUNCTION FOR ADDING DATA TO RDS
 
 
-def add_data():
+def add_data(joke, rating):
 
     #first we add the ratings data
-    rating = pd.read_csv('rating.csv')
+    joke_add = Ratings_Log(joke = prev_joke,rating = value)
+    db.session.add(joke_add)
+    db.session.commit()
 
-    #loop through the ratings and create UserRatingObject and add to rds
-    #commit at the end
 
 
 

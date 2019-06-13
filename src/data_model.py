@@ -24,8 +24,6 @@ class Ratings_Log(Base):
     __tablename__ = 'ratings_log'
 
     id = Column(Integer, primary_key=True)
-    #user_id = Column(Integer, unique=False, nullable=False)
-    # joke_id = Column(Integer, unique=False, nullable=True)
     joke = Column(String(1000), unique=False, nullable=False)
     rating = Column(Integer, unique=False, nullable=True)
 
