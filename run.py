@@ -24,7 +24,7 @@ with open(os.path.join("config","config.yml"), "r") as f:
 
 #The logging configurations are called from local.conf
 logging.config.fileConfig(os.path.join("config","logging_local.conf"))
-logger = logging.getLogger(['logging']['LOGGER_NAME'])
+logger = logging.getLogger()
 
 
 #import necessary functions from src modules
