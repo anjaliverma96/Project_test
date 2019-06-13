@@ -197,11 +197,9 @@ def recommend_joke():
 def add_data(joke, rating):
 
     #first we add the ratings data
-    joke_add = Ratings_Log(joke = prev_joke,rating = value)
+    joke_add = Ratings_Log(joke = joke,rating = rating)
     db.session.add(joke_add)
     db.session.commit()
-
-
 
 
 #if __name__ == "__main__":
