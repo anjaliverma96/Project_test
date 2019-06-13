@@ -68,12 +68,7 @@ def create_db(args):
             DATABASE_ADDRESS = os.environ.get("MYSQL_HOST") #works
             DATABASE_URI = 'mysql+pymysql://%s:%s@%s/%s?use_unicode=1&charset=utf8' % (DATABASE_USERNAME,DATABASE_PASSWORD,DATABASE_ADDRESS,DATABASE_NAME)
             engine_string = DATABASE_URI
-            # conn_type = "mysql+pymysql"
-            # user = os.environ.get("MYSQL_USER")
-            # password = os.environ.get("MYSQL_PASSWORD")
-            # host = os.environ.get("MYSQL_HOST")
-            # port = os.environ.get("MYSQL_PORT")
-            # db_name = os.environ.get("MYSQL_DB")
+
         
             logger.debug('Creating database now.')    
             engine = create_engine(engine_string)            
