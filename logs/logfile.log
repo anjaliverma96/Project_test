@@ -47,3 +47,5 @@
 2019-06-13 00:54:20,867 root         INFO     Creating a local database at sqlite:///data/msia423.db
 2019-06-13 00:54:20,889 root         INFO     Database successfully created.
 2019-06-13 00:54:27,328 werkzeug     INFO      * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+2019-06-13 01:41:05,018 root         INFO     Creating a local database at sqlite:///data/msia423.db
+2019-06-13 01:41:05,042 root         INFO     Database successfully created.

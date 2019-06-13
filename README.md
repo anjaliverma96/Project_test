@@ -199,9 +199,9 @@ The `requirements.txt` file contains the packages required to run the model code
 ```bash
 pip install virtualenv
 
-virtualenv housePrices
+virtualenv JokeRecommender
 
-source housePrices/bin/activate
+source JokeRecommender/bin/activate
 
 pip install -r requirements.txt
 
@@ -209,8 +209,8 @@ pip install -r requirements.txt
 #### With `conda`
 
 ```bash
-conda create -n housePrices python=3.7.3
-conda activate housePrices
+conda create -n JokeRecommender python=3.7.3
+conda activate JokeRecommender
 pip install -r requirements.txt
 
 ```
@@ -229,21 +229,6 @@ Original Data Source:
 Since the dataset used in this project for recommendation is relatively small, the data was downloaded directly during runtime from the S3 bucket to the local file system.
 
 The bototest.py allows for this functionality
-```
-Running this code will download the raw data from the s3 bucket and will put it in **/Data/raw/**
-
-
-#### AWS
-Run the following command in command line:
-```bash
-python run.py load_data --where=AWS --bucket=<destination_bucket_name>
-```
-
-With `Make`
-```
-make load_data
-```
-Running this code will download the raw data from the s3 bucket and will put it in **<destination_bucket_name>/raw/**
 
 
 ### 4. Initialize the database
