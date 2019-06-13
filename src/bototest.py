@@ -23,11 +23,9 @@ class Boto:
 
 		except Exception as e:
 			logger.error("This error has been raised possibly due to the wrong S3 credentials/access privilege")
-            logger.error(e)
+			logger.error(e)
 
-            raise(e)
-
-		
+			raise(e)
 
 	def download_jokes(self):
 		
