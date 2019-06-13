@@ -1,97 +1,431 @@
-For midproject submission
+# What's my house worth?
+
+## Team Members
+#### Project lead: Saurabh Annadate
+#### QA lead: [Tanya Tandon](https://github.com/TanyaTandon) 
 
 
-# Project Charter 
+## Index
+<!-- toc -->
 
-**Vision**: Engage people looking for entertainment and fun, in humor with jokes and content that match their interests. Help them discover jokes they might not have found otherwise and ultimately spread happiness by sharing jokes thereby increasing user base for the app.
+- [Project Charter](#project-charter)
+- [Project Plan](#project-plan)
+- [Repo structure](#repo-structure)
+- [Running the application](#running-the-application)
+  * [1. Initial setup](#1-initial-setup)
+  * [2. Set up environment](#2-set-up-environment)
+  * [3. Download the data](#3-download-the-data)
+  * [4. Initialize the database](#4-initialize-the-database)
+  * [5. Clean the data](#5-clean-the-data)
+  * [6. Generate features](#6-generate-features)
+  * [7. Train model](#7-train-model)
+  * [8. Launch App](#8-launch-app)
+- [Make All](#make-all)
+- [Testing](#testing)
+- [Logging](#logging)
+- [Links To notebooks](#links-to-notebooks)
+- [Acknowledgements](#acknowledgements)
 
-**Mission**: Build an app for joke recommendations and drive app usage by enabling users to rank jokes on a visual analog scale. Produce updated recommendations based on their inputs(i.e. explicit preferences) using collaborative filtering(i.e. similarity to other users) recommendation model trained on Jester Dataset.
+## Project Charter
 
-**Success criteria**: 
-- Machine Learning Performance Metric : **AUC** - Area Under the ROC Curve that plots true
-positive rate against false positive rate. This metric was chosen for model evaluation since we are concerned with whether users like the recommended joke or not rather than the accuracy of predicted user ratings for a joke. For the model to be successful, the goal would be to achieve a mean AUC score (across all users in test set) in the range 0.7 to 0.9 (though this is subject to change and can be ascertained only after optimizing/tuning model parameters ).
-
-- Business Performance Metric : **Engagement** ~ measured by how frequently users come back to the app. Success is defined as having achieved a million plus downloads with 80% of the users visiting the app atleast once a day and is indicative of personalized recommendations that suit the sense of humor of the users.
-
-# Planning
-## Theme 1 : Joke Recommender
-Recommendation system to gauge user preferences and make personalized joke suggestions, shared widely among users
-
- - **Epic 1** : **Model Building**
-	 -	Story 1 : **Define the model objective** ~ why the model is being built and understand the end goal the model would achieve
-	 -	Story 2 : **Gather the data** ~ Extract interaction matrix between users and jokes from the Jester dataset and transform data into format expected for a recommendation system
-	 - Story 3 : **Data Cleaning** ~ Handle any inconsistencies or missing values and prepare the data for modeling
-	 - Story 4 : **Feature Engineering** ~ Explore and create new attributes about the user-joke interaction that could potentially be used in the recommender
-	 - Story 5 : Split the data into **training** and **test** sets and train 2 different models
-		-Story 5.1 : Train a **Baseline** model whose underlying algorithm is to recommend items that are popular
-		-Story 5.2 : Train a **Collaborative Filtering** model using **Lightfm** package in python where the underlying algorithm is to suggest jokes that similar users like
-	 
- - **Epic 2** : **Model Selection and Evaluation**
-	 - Story 1 : Decide on loss functions and metrics to evaluate performance of the two models
-	 - Story 2 : Tune/Optimize model hyperparameters using cross-validation to arrive at the best fitted model
-	 - Story 3 : Evaluate each model using the decided metrics (such as AUC) using both the training and test datasets. Select the model with the best performance metric(highest AUC) for the test set
-
- - **Epic 3** : **Model Validation, Reproducibilty and Collaboration**
-	 - Story 1 : **Logging** ~ Manage complexity, communicate code to potential collaborators or developers, and debug software
-	 - Story 2 : Write **Unit Tests** and **Configure reproducibility tests** that can be run to test each stage of model development
-	 - Story 3 : **Version Control**: Create a Github repository for potential collaboration
-	 - Story 4 : **Documentation**: Make code readable and reproducible by documenting code   	
-
-## Theme 2 : Graphical User Interface
- - **Epic 1** : **Interface Development**
-	 - Story 1 : Develop a GUI to display the story
-			 - Visual analog scale : Slider from Less Fynny to Very Funny
-			 - Search bar to search for categories of jokes
-			 - Next and back buttons to cycle between jokes.
-	 - Story 2 : Test out the interface built with users and gather feedback on the initial iteration
-	 - Story 3 : Rework the suggestions from the users into the final step of the design and convert to a web page using HTML/CSS
-- **Epic 2** : **Web App Deployment**
-	  - Story 1 : Introduce a backend by storing it on a server to fetch the data (probably MySQL db on AWS RDS)
-	 - Story 2 : Link the RDS to the front end app by deploying on a AWS EC2 server running a Flask app
-
-	
-
-# Backlog 
-
- - Theme1.Epic1.Story1 ***Define the model objective*** - 2 points    ***PLANNED***
- 
- - Theme1.Epic1.Story2 ***Gather the data*** -  2 points    ***PLANNED***
- - Theme1.Epic1.Story3 ***Data Cleaning***  -  4 points  ***PLANNED***
- - Theme1.Epic1.Story4 ***Feature Engineering*** -  4 points  ***PLANNED***
- - Theme1.Epic1.Story5.1 ***Train Baseline Model***  - 4 points ***PLANNED***
- - Theme1.Epic1.Story5.2 ***Train Collaborative Filtering Model*** - 4 points ***PLANNED***
- - Theme1.Epic2.Story1 A ***Loss functions and metrics*** -  2 points
- - Theme1.Epic2.Story2 ***Optimize model hyperparameters*** -  4 points
- - Theme1.Epic2.Story3 ***Evaluate each model*** -  1 point
- - Theme1.Epic3.Story1 ***Logging*** -  4 points
- - Theme1.Epic3.Story2 ***Write and run tests***-   8 points
- - Theme1.Epic3.Story3 ***Version Control*** -   2 points
- - Theme1.Epic3.Story4 ***Documentation*** -   2 points
- - Theme2.Epic1.Story1 ***Develop a GUI***  -  4 points
- - Theme2.Epic2.Story1 - ***Fetch Data on AWS RDS***  - 4 points
- - Theme2.Epic2.Story2 - ***Deploy App on AWS EC2***  - 4 points
+### Vision
+Real estate agencies require accurate estimation of the price of a property to decide whether it is undervalued or not before making an investment decision. Individual home buyers also need an objective estimate of a home before buying. House pricing decisions are often subjective and can lead to bad investment decisions. Our vision is to develop a platform which would help estimate the price of a property based on certain property characteristics to help drive investment decisions, increase profits and reduce costs.
 
 
- 
-# Icebox	
+### Mission
+Mission is to build an app which would help accurately predict the price of a property based on certain characteristics like property type, no. of floors, age etc. which can be deployed as a website as well as an Android/iOS app
 
- - Theme2.Epic1.Story2 - ***Test out interface***  
- - Theme2.Epic1.Story3 - ***Convert to webpage***  
+### Success Criteria
+
+**Model Criterion**: Our model is successful if the R-square evaluation metric exceeds 60%. 
+
+**Desired Business Outcomes**: A Key Performance Indicator of the success of the app would be continual increase in it's adoption to drive business decisions by the various Real Estate agencies and individual customers. This would be a good indicator of the model's accuracy performance as well. The intention is to deploy the app at a particular location, and based on the performance expand to other areas.    
+
+## Project Plan
+
+### Theme: Develop and deploy a platform that helps estimate the valuation of a property based on certain characteristics. 
+
+1. __EPIC 1: Model Building and Optimization__
+    * Story 1 : Data Visualization
+    * Story 2 : Data Cleaning and missing value imputation
+    * Story 3 : Feature Generation
+    * Story 4 : Testing different model architectures and parameter tuning
+    * Story 5 : Model performance tests to check the model run times
+   
+2. __EPIC 2: Model Deployment Pipeline Development__
+    * Story 1 : Environment Setup : requirement.txt files
+    * Story 2 : Set up S3 instance
+    * Story 3 : Initialize RDS database
+    * Story 4 : Deploy model using Flask
+    * Story 5 : Development of unit tests and integrated tests
+    * Story 6 : Setup usage logs
+    * Story 7 : Solution reproducibility tests
+    
+3. __EPIC 3: User Interface Development__
+    * Story 1 : Develop a basic form to input data and output results
+    * Story 2 : Add styling/colors to make the interface more visually appealing  
+
+### Backlog
+
+Sprint Sizing Legend:
+
+* 0 points - quick chore
+* 1 point ~ 1 hour (small)
+* 2 points ~ 1/2 day (medium)
+* 4 points ~ 1 day (large)
+* 8 points - big and needs to be broken down more when it comes to execution (okay as placeholder for future work though)
+------------------
+* EPIC 2 : Story 2 : Set up a S3 instance (1) : Sprint 1 (Completed)
+* EPIC 2 : Story 3 : Initialize RDS database(1) : Sprint 1 (Completed)
+* EPIC 1 : Story 1 : Exploratory Data Analysis (2) : Sprint 1 (Completed)
+* EPIC 1 : Story 2 : Data Cleaning and missing value imputation (2) : Sprint 1 (Completed)
+* EPIC 2 : Story 1 : Environment Setup : requirement.txt files (1) : Sprint 1 (Completed)
+* EPIC 1 : Story 3 : Feature Generation (2) : Sprint 2 (Completed)
+* EPIC 1 : Story 4 : Testing different model architectures and parameter tuning (8) : Sprint 2 (Completed)
+* EPIC 1 : Story 5 : Model performance tests (2) : Sprint 2 (Completed)
+* EPIC 2 : Story 4 : Deploy model using Flask (2) : Sprint 2 (Completed)
+* EPIC 2 : Story 5 : Development of unit tests and integrated tests (4) : Sprint 2 (Completed)
+* EPIC 3 : Story 1 : Develop a basic form to input data and output results (2) : Sprint 2 (Completed)
+* EPIC 2 : Story 6 : Setup usage logs (2) : Sprint 2 (Completed)
+* EPIC 2 : Story 7 : Solution reproducibility tests (4) : Sprint 2 (Completed)
+
+### IceBox 
+* EPIC 3 : Story 2 : Add styling/colors to make the interface more visually appealing (Completed)
+
+## Repo structure 
+
+```
+├── README.md                         <- You are here
+│
+├── app
+│   ├── static/                       <- CSS, JS files that remain static 
+│   ├── templates/                    <- HTML (or other code) that is templated and changes based on a set of inputs
+│   ├── app.py                        <- Contains all the functionality of the flask app 
+│
+├── config                            <- Directory for yaml configuration files for model training, scoring, etc
+│   ├── logging_local.conf            <- Configuration files for python loggers
+│   ├── config.py                     <- Contains all configurations required for processing and set up
+│   ├── flask_config.py               <- Contains all config required for the flask app
+│
+├── data                              <- Folder that contains data used or generated. Not tracked by git
+│   ├── raw/                          <- Place to put raw data used for training the model 
+│   ├── clean/                        <- Contains the cleaned dataset after the raw data has been cleaned
+│   ├── features/                     <- Contains the data with the features
+│
+├── database                          <- Folder that contains the local SQLite database
+│
+├── deliverables                      <- Contains all deliverables for the project
+│
+├── logs                              <- Contains execution logs
+│
+├── models                            <- Trained model objects (TMOs), model predictions, and/or model summaries
+│
+├── notebooks
+│   ├── develop                       <- Current notebooks being used in development
+│   ├── deliver                       <- Notebooks shared with others 
+│   ├── archive                       <- Developed notebooks no longer being used 
+│
+├── src                               <- Contains all the scripts for the project
+│   ├── archive/                      <- No longer current scripts.
+│   ├── helpers/                      <- Helper scripts used in main src files 
+│   ├── load_data.py                  <- Script for downloading data from the input source 
+│   ├── clean_data.py                 <- Script for cleaning the raw data
+│   ├── features.py                   <- Script containing features that are required to be generated for modelling
+│   ├── generate_features.py          <- Script that uses the features script to generate features
+│   ├── log_usage_data.py             <- Script for building the usage log database and injesting data in it
+│   ├── train_model.py                <- Script that trains the model using the final training data
+│
+├── tests                             <- Contains files for unit testing
+│
+├── run.py                            <- Simplifies the execution of one or more of the src scripts 
+│
+├── requirements.txt                  <- Python package dependencies 
+│
+├── Makefile                          <- Makefile to execute the make commands
+```
+
+## Running the application
+
+Ths application can be run on both local system as well as on AWS. Steps on how to deploy the app for both settings is given below.
+
+### 1. Initial Setup
+
+Depending on where the app is deployed, ensure to go through the following:
+
+#### Running on a local machine
+
+**Specs**
+* *Server: Local system*
+* *Data Storage: Local filesystem*
+* *Database: Local SQLite database*
+
+**Makefile**
+* Ensure that the `WHERE` variable is set to "Local"
+* Ensure that the variable `BUCKET` is set to "Scripts" if running on Windows, else "bin" if on Linux or MacOS
+
+**config/flask_config.py**
+* Ensure that the `WHERE` variable is set to "Local"
+* Ensure that the `HOST` variable is set to "127.0.0.1"
+* Keep the default `PORT` of 3000; However, change it if this port is not available
+
+**Setting up AWS CLI**
+AWS CLI needs to be configured in your system for you to fetch the training data. Kindly refer to this [link](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) to set up the same  
+
+
+#### Running on AWS
+
+**Specs**
+* *Server: EC2*
+* *Data Storage: S3 bucket provided by the user*
+* *Database: RDS MySQL database provided by the user*
+
+**RDS configurations**
+In order to use RDS, the RDS credentials need to be added to the os environment. Add the following variables to the environment:
+* MYSQL_USER : *Username to access the RDS instance*
+* MYSQL_PASSWORD : *Password to access the RDS instance*
+* MYSQL_HOST : *RDS instance endpoinr*
+* MYSQL_PORT : *Port number to access the instance*
+* MYSQL_DB : *Name of the database*
+
+
+**Makefile**
+* Ensure that the `WHERE` variable is set to "AWS"
+* Set the variable `STORAGE_S3_BUCKET` to the S3 bucket that you intend to use
+* Ensure that the variable `BUCKET` is set to "Scripts" if running on Windows server, else "bin" if on Linux server
+
+**config/flask_config.py**
+* Ensure that the `WHERE` variable is set to "AWS"
+* Ensure that the `HOST` variable is set to "0.0.0.0"
+
+
+### 2. Set up environment 
+
+The `requirements.txt` file contains the packages required to run the model code. An environment can be set up in two ways. 
+
+#### With `virtualenv`
+
+```bash
+pip install virtualenv
+
+virtualenv housePrices
+
+source housePrices/bin/activate
+
+pip install -r requirements.txt
+
+```
+#### With `conda`
+
+```bash
+conda create -n housePrices python=3.7.3
+conda activate housePrices
+pip install -r requirements.txt
+
+```
+
+#### With `Make`
+
+```bash
+make venv
+```
+
+
+### 3. Download the data
+
+Original Data Source: [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+
+For the ease of downloading, the raw data has been downloaded and placed in a public s3 bucket: **s3://housing-prices-data** 
+
+
+#### Running on Local
+Run the following command in command line:
+```bash
+python run.py load_data
+```
+
+With `Make`
+```
+make load_data
+```
+Running this code will download the raw data from the s3 bucket and will put it in **/Data/raw/**
+
+
+#### AWS
+Run the following command in command line:
+```bash
+python run.py load_data --where=AWS --bucket=<destination_bucket_name>
+```
+
+With `Make`
+```
+make load_data
+```
+Running this code will download the raw data from the s3 bucket and will put it in **<destination_bucket_name>/raw/**
+
+
+### 4. Initialize the database
+
+#### Local
+Run the following command in command line:
+```bash
+python run.py create_db
+```
+
+With `Make`
+```
+make create_db
+```
+
+Running this code will create a sqlite database to log the app usage at: **/Data/usage_log/msia423.db**
+
+#### AWS
+
+Run the following command in command line:
+```bash
+python run.py create_db --where=AWS
+```
+
+With `Make`
+```
+make create_db
+```
+
+Running this code will create the database specified in the given RDS instance 
+
+
+### 5. Clean the data
+
+#### Local
+Run the following command in command line:
+```bash
+python run.py clean_data
+```
+
+With `Make`
+```
+make clean_data
+```
+Running this code will clean the raw data and create a cleaned dataset at: **/Data/clean/**
+
+#### AWS
+Run the following command in command line:
+```bash
+python run.py clean_data --where=AWS --bucket=<destination_bucket_name>
+```
+
+With `Make`
+```
+make clean_data
+```
+Running this code will clean the raw data from the S3 bucket and will put it in **<destination_bucket_name>/clean/**
+
+
+### 6. Generate features
+
+#### Local
+Run the following command in command line:
+```bash
+python run.py generate_features
+``` 
+
+With `Make`
+```
+make generate_features
+```
+Running this code will clean the raw data and create a cleaned dataset at: **/Data/clean/**
+
+#### AWS
+Run the following command in command line:
+```bash
+python run.py clean_data --where=AWS --bucket=<destination_bucket_name>
+```
+
+With `Make`
+```
+make generate_features
+```
+Running this code will clean the raw data from the S3 bucket and will put it in **<destination_bucket_name>/clean/**
+
+### 7. Train Model
+
+#### Local
+Run the following command in command line:
+```bash
+python run.py train_model
+``` 
+
+With `Make`
+```
+make train_model
+```
+Running this code will train the prediction model and will dump it at: **/models/**
+
+#### AWS
+Run the following command in command line:
+```bash
+python run.py train_model --where=AWS --bucket=<destination_bucket_name>
+```
+
+With `Make`
+```
+make train_model
+```
+Running this code will clean the raw data from the S3 bucket and will put it in **<destination_bucket_name>/models/**
+
+### 8. Launch app
+
+#### Local or AWS
+Run the following command in command line:
+```bash
+python run.py run_app
+``` 
+
+With `Make`
+```
+make app
+```
+Running this code will start the flask app at the IP specified in **config/flask_config.py**
+
+## Make All
+
+In order to use Make All, please ensure that the [Initial Setup](#1-initial-setup) is complete
+
+Run the following command in command line:
+```
+make all
+```
+
+## Testing
+
+In order to unit test the functions, follow the following steps:
+1. Navigate to the tests folder
+2. Run the following command on the command line:
+```
+pytest test_all_functions.py
+```
+
+## Logging
+All logs are saved at **logs/logfile.log**
 
 
 
 
-For midproject PR
-Script that acquires data from data source and puts it into S3 is available in the src folder under downloaddata.py
+## Links to Notebooks
+[Exploratory Data Analysis](notebooks/deliver/Exploratory_Data_Analysis.ipynb)
 
-To copy data from publicly accessible bucket "jokerecommender" to own private bucket, run:
-python run.py loadS3 --bucket=
-Script that creates database schema locally in sqlite is available in src folder under add_schema.py
-2. To create the database in the location configured in config.py, run:
-python run.py createSqlite
+[Model Selection](notebooks/deliver/Data_Pre_Processing_and_Model_Selection.ipynb)
 
-Script that creates database schema in RDS based on a configuration is available in src folder under add_schema.py
-3. To create the database schema in AWS RDS, run:
-python run.py createRDS
+## Acknowledgements
+Sincerest thanks:  
+* Tanya Tandon
+* Chloe Mawer
+* Fausto Inestroza
+* Xiaofeng Zhu
 
-All variable declarations are in config.py
+
+
+
+
+
+
+
