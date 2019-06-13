@@ -24,6 +24,7 @@ class Ratings_Log(Base):
     __tablename__ = 'ratings_log'
 
     id = Column(Integer, primary_key=True)
+
     joke = Column(String(1000), unique=False, nullable=False)
     rating = Column(Integer, unique=False, nullable=True)
 
@@ -49,7 +50,6 @@ def create_db(args):
     
     if args.where == "Local":
         try:
-            print('local is called')
             logger.info('Creating a local database at {}'.format(config['db_config']['SQLALCHEMY_DATABASE_URI']))
             engine = create_engine(config['db_config']['SQLALCHEMY_DATABASE_URI'])
             logger.debug('Database engine successfully created.')            
@@ -58,11 +58,11 @@ def create_db(args):
             
     elif args.where == "AWS":
         try:
-            print('aws is called')
+            
             logger.info('Creating an RDS database based on environment variables: MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DB.')
             SECRET_KEY = 'reallyhardtoguesskey'
             dbidentifier = 'anjalivermadb'
-            DATABASE_USERNAME = 'root'
+            DATABASE_USERNAME = os.environ.get("MYSQL_USER")
             DATABASE_PASSWORD = 'Positivesuccessful1!'
             DATABASE_NAME = 'msia423'
             DATABASE_ADDRESS = 'mysql-nw-anjaliverma.cyal1kueh9e9.us-east-2.rds.amazonaws.com'
@@ -75,6 +75,7 @@ def create_db(args):
             # port = os.environ.get("MYSQL_PORT")
             # db_name = os.environ.get("MYSQL_DB")
             # engine_string = "{}://{}:{}@{}:{}/{}".format(conn_type, user, password, host, port, db_name)
+
 
         
             logger.debug('Creating database now.')    
