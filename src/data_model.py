@@ -63,9 +63,10 @@ def create_db(args):
             SECRET_KEY = 'reallyhardtoguesskey'
             dbidentifier = 'anjalivermadb'
             DATABASE_USERNAME = os.environ.get("MYSQL_USER") #works
-            DATABASE_PASSWORD = os.environ.get("MYSQL_PASSWORD")
+            DATABASE_PASSWORD = os.environ.get("MYSQL_PASSWORD") #works
             DATABASE_NAME = 'msia423'
-            DATABASE_ADDRESS = 'mysql-nw-anjaliverma.cyal1kueh9e9.us-east-2.rds.amazonaws.com'
+            DATABASE_ADDRESS = os.environ.get("MYSQL_HOST")
+            
             DATABASE_URI = 'mysql+pymysql://%s:%s@%s/%s?use_unicode=1&charset=utf8' % (DATABASE_USERNAME,DATABASE_PASSWORD,DATABASE_ADDRESS,DATABASE_NAME)
             engine_string = DATABASE_URI
             # conn_type = "mysql+pymysql"
