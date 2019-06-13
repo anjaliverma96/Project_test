@@ -1,1 +1,40 @@
 2019-06-12 22:24:35,949 werkzeug     INFO      * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+2019-06-13 04:46:36,302 werkzeug     INFO      * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+2019-06-13 04:46:43,170 root         INFO     Starting download of ratings file
+2019-06-13 04:46:43,194 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2019-06-13 04:46:45,275 root         INFO     Finished download of ratings file
+2019-06-13 04:46:45,276 root         INFO     Starting download of jokes file
+2019-06-13 04:46:45,832 root         INFO     Finished download of jokes file
+2019-06-13 04:46:45,840 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:46:45] "GET / HTTP/1.1" 200 -
+2019-06-13 04:46:47,595 root         INFO     Reading the data files - ratings and joke 
+2019-06-13 04:46:47,982 root         INFO     Finished reading the jokes and ratings file
+2019-06-13 04:46:47,999 root         INFO     Added joke number and previous joke to session
+2019-06-13 04:46:48,003 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:46:48] "GET /jokes HTTP/1.1" 200 -
+2019-06-13 04:46:51,002 root         INFO     Reading the data files - ratings and joke 
+2019-06-13 04:46:51,364 root         INFO     Finished reading the jokes and ratings file
+2019-06-13 04:46:51,379 root         INFO     Post method of recommend joke hit
+2019-06-13 04:46:51,380 root         INFO     Adding new data to RDS - add_data function called
+2019-06-13 04:46:51,475 root         INFO     Data written to Database for future analysis
+2019-06-13 04:46:51,475 root         INFO     User preference in session - not a first time user
+2019-06-13 04:46:51,533 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:46:51] "POST /jokes HTTP/1.1" 200 -
+2019-06-13 04:46:54,216 root         INFO     Reading the data files - ratings and joke 
+2019-06-13 04:46:54,572 root         INFO     Finished reading the jokes and ratings file
+2019-06-13 04:46:54,587 root         INFO     Post method of recommend joke hit
+2019-06-13 04:46:54,587 root         INFO     Adding new data to RDS - add_data function called
+2019-06-13 04:46:54,596 root         INFO     Data written to Database for future analysis
+2019-06-13 04:46:54,596 root         INFO     User preference in session - not a first time user
+2019-06-13 04:46:54,649 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:46:54] "POST /jokes HTTP/1.1" 200 -
+2019-06-13 04:47:03,037 root         INFO     Reading the data files - ratings and joke 
+2019-06-13 04:47:03,386 root         INFO     Finished reading the jokes and ratings file
+2019-06-13 04:47:03,401 root         INFO     Post method of recommend joke hit
+2019-06-13 04:47:03,401 root         INFO     Adding new data to RDS - add_data function called
+2019-06-13 04:47:03,411 root         INFO     Data written to Database for future analysis
+2019-06-13 04:47:03,412 root         INFO     User preference in session - not a first time user
+2019-06-13 04:47:03,464 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:47:03] "POST /jokes HTTP/1.1" 200 -
+2019-06-13 04:47:07,286 root         INFO     Reading the data files - ratings and joke 
+2019-06-13 04:47:07,641 root         INFO     Finished reading the jokes and ratings file
+2019-06-13 04:47:07,656 root         INFO     Post method of recommend joke hit
+2019-06-13 04:47:07,657 root         INFO     Adding new data to RDS - add_data function called
+2019-06-13 04:47:07,667 root         INFO     Data written to Database for future analysis
+2019-06-13 04:47:07,667 root         INFO     User preference in session - not a first time user
+2019-06-13 04:47:07,719 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:47:07] "POST /jokes HTTP/1.1" 200 -
