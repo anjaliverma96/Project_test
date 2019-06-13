@@ -4,12 +4,13 @@
 This module combines the argparsing of each module within src/ and enables the execution of the corresponding scripts
 so that all module imports can be absolute with respect to the main project directory.
 
-Command to load data into S3 bucket 
-python run.py loadS3
-Command to add databse schema data folder in the project repository 
-python run.py createSqlite
+Command to add databse schema in data folder in the project repository 
+python run.py create_db
 Command to add database schema in RDS
-python run.py createRDS
+python run.py create_db --where AWS
+
+Command to run app
+python run.py run_app
 """
 
 import os

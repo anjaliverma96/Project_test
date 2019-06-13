@@ -28,19 +28,9 @@ db = SQLAlchemy(app)
 @app.route('/', methods = ['GET','POST'])
 def home():
     
-
+    '''
     
-
-    #query the db to check if data is present 
-    #if present then don't do anything
-    #else get data from s3 boto to put into rds
-    # data = User.query.all()
-    # db.session.query()
-    
-
-
-    #For direct calculation from s3
-
+    '''
     #check if file is already present -
     #if not download
     try: 

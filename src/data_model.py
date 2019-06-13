@@ -49,6 +49,7 @@ def create_db(args):
     
     if args.where == "Local":
         try:
+            print('local is called')
             logger.info('Creating a local database at {}'.format(config['db_config']['SQLALCHEMY_DATABASE_URI']))
             engine = create_engine(config['db_config']['SQLALCHEMY_DATABASE_URI'])
             logger.debug('Database engine successfully created.')            
@@ -57,7 +58,7 @@ def create_db(args):
             
     elif args.where == "AWS":
         try:
-            
+            print('aws is called')
             logger.info('Creating an RDS database based on environment variables: MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DB.')
             SECRET_KEY = 'reallyhardtoguesskey'
             dbidentifier = 'anjalivermadb'
