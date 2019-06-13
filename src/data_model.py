@@ -62,10 +62,10 @@ def create_db(args):
             logger.info('Creating an RDS database based on environment variables: MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DB.')
             SECRET_KEY = 'reallyhardtoguesskey'
             dbidentifier = 'anjalivermadb'
-            DATABASE_USERNAME = os.environ.get("MYSQL_USER") #works
-            DATABASE_PASSWORD = os.environ.get("MYSQL_PASSWORD") #works
+            DATABASE_USERNAME = os.environ.get("MYSQL_USER") 
+            DATABASE_PASSWORD = os.environ.get("MYSQL_PASSWORD") 
             DATABASE_NAME = os.environ.get("MYSQL_DB")
-            DATABASE_ADDRESS = os.environ.get("MYSQL_HOST") #works
+            DATABASE_ADDRESS = os.environ.get("MYSQL_HOST")
             DATABASE_URI = 'mysql+pymysql://%s:%s@%s/%s?use_unicode=1&charset=utf8' % (DATABASE_USERNAME,DATABASE_PASSWORD,DATABASE_ADDRESS,DATABASE_NAME)
             engine_string = DATABASE_URI
 
