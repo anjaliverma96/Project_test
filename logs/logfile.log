@@ -38,3 +38,9 @@
 2019-06-13 04:47:07,667 root         INFO     Data written to Database for future analysis
 2019-06-13 04:47:07,667 root         INFO     User preference in session - not a first time user
 2019-06-13 04:47:07,719 werkzeug     INFO     96.87.75.1 - - [13/Jun/2019 04:47:07] "POST /jokes HTTP/1.1" 200 -
+2019-06-13 00:09:28,064 matplotlib.font_manager INFO     Could not open font file /System/Library/Fonts/Apple Color Emoji.ttc: In FT2Font: Could not set the fontsize
+2019-06-13 00:09:28,753 matplotlib.font_manager INFO     Could not open font file /Library/Fonts/NISC18030.ttf: In FT2Font: Could not set the fontsize
+2019-06-13 00:09:29,558 matplotlib.font_manager INFO     generated new fontManager
+2019-06-13 00:09:30,423 root         INFO     Creating a local database at sqlite:///data/msia423.db
+2019-06-13 00:09:30,445 root         INFO     Database successfully created.
+2019-06-13 00:09:37,032 werkzeug     INFO      * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
