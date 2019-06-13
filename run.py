@@ -25,15 +25,8 @@ with open(os.path.join("config","config.yml"), "r") as f:
 # logging.config.fileConfig(os.path.join("config","logging_local.conf"))
 # logger = logging.getLogger(config['logging']['LOGGER_NAME'])
 
-# #import necessary functions from src modules
 
-# from src.downloadData import load_data
-# from src.add_schema import create_sqlite_db, create_rds_db
-
-# #import necessary variables from config file
-
-# from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME
-
+#import necessary functions from src modules
 from src.data_model import create_db
 
 from app.views import run_app

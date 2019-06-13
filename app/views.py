@@ -26,7 +26,7 @@ db = SQLAlchemy(app)
 ################ ROUTES
 
 @app.route('/', methods = ['GET','POST'])
-def hello_world():
+def home():
     
 
     
