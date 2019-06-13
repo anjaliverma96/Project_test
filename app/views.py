@@ -11,6 +11,7 @@ from config.settings import SQLALCHEMY_DATABASE_URI
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
 
+from src.data_model import Ratings_Log
 from src.recommender import Recommender
 from src.bototest import Boto
 
@@ -110,7 +111,7 @@ def recommend_joke():
         session.pop('prev_joke',None)
 
         #RDS ADD JOKE FOR FUTURE ANALYSIS
-        joke_add = Jokes(joke = prev_joke,rating = value)
+        joke_add = Ratings_Log(joke = prev_joke,rating = value)
 
         db.session.add(joke_add)
         db.session.commit()
@@ -187,6 +188,8 @@ def recommend_joke():
             session['joke_num'] = new_joke_number
             session['user_pref'] = user_pref
             session['prev_joke'] = joke
+
+
 
 
             return render_template('recommended_jokes.html', joke= new_joke)

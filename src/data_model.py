@@ -25,9 +25,10 @@ class Ratings_Log(Base):
 
     id = Column(Integer, primary_key=True)
     #user_id = Column(Integer, unique=False, nullable=False)
-    #joke_id = Column(Integer, unique=False, nullable=False)
+    # joke_id = Column(Integer, unique=False, nullable=True)
     joke = Column(String(1000), unique=False, nullable=False)
     rating = Column(Integer, unique=False, nullable=True)
+
 
     def __repr__(self):
         ratings_log_repr = "<Ratings_Log(id='%i', joke ='%i', rating = '%i')>"
