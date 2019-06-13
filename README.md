@@ -229,17 +229,6 @@ Original Data Source:
 Since the dataset used in this project for recommendation is relatively small, the data was downloaded directly during runtime from the S3 bucket to the local file system.
 
 The bototest.py allows for this functionality
-
-
-#### Running on Local
-Run the following command in command line:
-```bash
-python run.py load_data
-```
-
-With `Make`
-```
-make load_data
 ```
 Running this code will download the raw data from the s3 bucket and will put it in **/Data/raw/**
 
@@ -300,7 +289,7 @@ With `Make`
 ```
 make app
 ```
-Running this code will start the flask app at the IP specified in **config/flask_config.py**
+Running this code will start the flask app at the IP specified in **config/settings.py**
 
 ## Make All
 
