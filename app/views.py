@@ -15,6 +15,10 @@ from src.data_model import Ratings_Log
 from src.recommender import Recommender
 from src.bototest import Boto
 
+import logging
+import logging.config
+logger = logging.getLogger()
+
 app = Flask(__name__)
 app.secret_key = 'verysecretsecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
@@ -28,16 +32,26 @@ db = SQLAlchemy(app)
 @app.route('/', methods = ['GET','POST'])
 def home():
     
-    '''
-    
-    '''
-    #check if file is already present -
-    #if not download
+
+    """ This route renders the homepage of the app
+
+    args : 
+        None
+    returns :
+        renders home.html
+
+    """
+    logger.debug('Hit the home route')
     try: 
+
+
         fr = open(os.path.join("../data", "ratings.csv"), 'r') 
         fj = open(os.path.join("../data", "jokes.csv"), 'r')
+
+        logger.debug('Hit the try block in home route')
     except FileNotFoundError: 
         
+        logger.debug('Exception raised in home route')
         boto = Boto()
         boto.download_rating()
         boto.download_jokes()
@@ -51,25 +65,34 @@ def home():
     
     if request.method == 'GET':
         
+        logger.debug('Home get method')
         return render_template('home.html')
 
 
 @app.route('/jokes',methods = ['GET','POST'])
 def recommend_joke():
-    '''
-    session - user_pref, joke_num(0-19)
-    '''
-    #write code to get the first joke and compute the matrix
-    #we have loaded the data
+    
+
+    """This route is the main route which renders the joke recommendation
+
+    Args:
+        None
+
+    Returns:
+
+        recommend_jokes.html
+    """
+
+    logger.debug('Hit the recommend_joke route')
+
+    logger.info('Reading the data files - ratings and joke ')
     data_raw = pd.read_csv('ratings.csv' ,index_col = 0)
     data_jokes = pd.read_csv('jokes.csv', index_col = 0)
     data_final = data_raw[:100000]
 
-    '''
-     above reading should be from datimported fromdta
-     below should be m
-    '''
-    #create an object of recommender
+    logger.info('Finished reading the jokes and ratings file')
+    
+
     reco = Recommender(data_final, data_jokes)
     
     res = reco.get_most_popular()
@@ -85,10 +108,13 @@ def recommend_joke():
 
         session['joke_num'] = joke_num #this is default but you will need to get the joke number you are displaying
         session['prev_joke'] = joke
+        logger.info('Added joke number and previous joke to session')
+    
         return render_template('joke.html', joke= joke)
     
     else:
 
+        logger.info('Post method of recommend joke hit')
         #This is the value which the user gave to the previous joke which is represented by joke_num
         value = request.form["rating"]
         session.pop('rating',None)
@@ -102,12 +128,14 @@ def recommend_joke():
 
         #RDS ADD JOKE FOR FUTURE ANALYSIS
         add_data(prev_joke, value)
+        logger.info('Data written to Database for future analysis')
         
     
         #now that we have the joke number we will create the svd with this information
         
         #check if session is set
         if 'user_pref' in session:
+            logger.info('User preference in session - not a first time user')
 
             curr_user_pref = list(session['user_pref'])
             
@@ -144,7 +172,7 @@ def recommend_joke():
 
         else :
 
-            
+            logger.info('User not preference in session - first time user')
             #first we will get the interaction matrix
             interaction_df = reco.get_interaction()
 
@@ -182,14 +210,30 @@ def recommend_joke():
             return render_template('recommended_jokes.html', joke= new_joke)
 
 #################### FUNCTION FOR ADDING DATA TO RDS
-
-
 def add_data(joke, rating):
 
+
+    """This function helps us add data to the RDS
+
+    Args:
+        joke : String which represents the joke string
+        rating : Integer which is the rating given by the user
+
+    Returns:
+        None
+
+    """
     #first we add the ratings data
-    joke_add = Ratings_Log(joke = joke,rating = rating)
-    db.session.add(joke_add)
-    db.session.commit()
+    logger.info('Adding new data to RDS - add_data function called')
+    try:
+        joke_add = Ratings_Log(joke = joke,rating = rating)
+        db.session.add(joke_add)
+        db.session.commit()
+    except:
+
+        Logger.error("Could not write to database")
+        logger.error(e)
+
 
 
 #if __name__ == "__main__":
