@@ -7,8 +7,7 @@ import pymysql
 from flask import Flask, url_for, request, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
-# from config.settings import SQLALCHEMY_DATABASE_URI
-from src.data_model import DATABASE_URI
+from config.settings import SQLALCHEMY_DATABASE_URI
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
@@ -23,7 +22,7 @@ logger = logging.getLogger()
 
 app = Flask(__name__)
 app.secret_key = 'verysecretsecretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 db = SQLAlchemy(app)
 
 
