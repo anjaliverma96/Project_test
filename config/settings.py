@@ -14,8 +14,7 @@ HOST = "127.0.0.1"
 
 SECRET_KEY = 'reallyhardtoguesskey'
 dbidentifier = 'anjalivermadb'
-DATABASE_USERNAME = os.environ.get("MYSQL_USER")
-
+DATABASE_USERNAME = 'root'
 DATABASE_PASSWORD = 'Positivesuccessful1!'
 DATABASE_NAME = 'msia423'
 DATABASE_ADDRESS = 'mysql-nw-anjaliverma.cyal1kueh9e9.us-east-2.rds.amazonaws.com'

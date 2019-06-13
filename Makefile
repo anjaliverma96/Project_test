@@ -21,3 +21,7 @@ app: create_db venv
 	. JokeRecommender/${BUCKET}/activate; python run.py run_app
 
 all: app venv
+
+
+
+
