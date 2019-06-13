@@ -64,9 +64,8 @@ def create_db(args):
             dbidentifier = 'anjalivermadb'
             DATABASE_USERNAME = os.environ.get("MYSQL_USER") #works
             DATABASE_PASSWORD = os.environ.get("MYSQL_PASSWORD") #works
-            DATABASE_NAME = 'msia423'
-            DATABASE_ADDRESS = os.environ.get("MYSQL_HOST")
-            
+            DATABASE_NAME = os.environ.get("MYSQL_DB")
+            DATABASE_ADDRESS = os.environ.get("MYSQL_HOST") #works
             DATABASE_URI = 'mysql+pymysql://%s:%s@%s/%s?use_unicode=1&charset=utf8' % (DATABASE_USERNAME,DATABASE_PASSWORD,DATABASE_ADDRESS,DATABASE_NAME)
             engine_string = DATABASE_URI
             # conn_type = "mysql+pymysql"
@@ -75,8 +74,6 @@ def create_db(args):
             # host = os.environ.get("MYSQL_HOST")
             # port = os.environ.get("MYSQL_PORT")
             # db_name = os.environ.get("MYSQL_DB")
-            # engine_string = "{}://{}:{}@{}:{}/{}".format(conn_type, user, password, host, port, db_name)
-
         
             logger.debug('Creating database now.')    
             engine = create_engine(engine_string)            
