@@ -22,9 +22,9 @@ import yaml
 with open(os.path.join("config","config.yml"), "r") as f:
     config = yaml.safe_load(f)
 
-# The logging configurations are called from local.conf
-# logging.config.fileConfig(os.path.join("config","logging_local.conf"))
-# logger = logging.getLogger(config['logging']['LOGGER_NAME'])
+#The logging configurations are called from local.conf
+logging.config.fileConfig(os.path.join("config","logging_local.conf"))
+logger = logging.getLogger(['logging']['LOGGER_NAME'])
 
 
 #import necessary functions from src modules
