@@ -6,7 +6,7 @@ awscli==1.14.44
 blinker==1.4
 boto3==1.9.159
 botocore==1.12.159
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 colorama==0.3.7
